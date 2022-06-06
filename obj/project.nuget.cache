@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sX6tnGBkYHgAyO+jqZRtQNq4xP29YAhlObf6Fjpjq+Xb2JSwwOzR9IwQOTRGpJMPlu3V7HtLIy8vq7WNmHPBow==",
+  "dgSpecHash": "8zCFzndXxehfRjGu0SmdpcOiQTi7yS5ECxwUaqGGMxaXx+KC13p1FL0nYeHXzfnj/JK1h72ryMsdQFn12u9WWA==",
   "success": true,
-  "projectFilePath": "E:\\CmdGame\\CmdGame.csproj",
+  "projectFilePath": "C:\\Users\\mstri\\source\\repos\\Engine\\ENgine\\CmdGame.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\HP\\.nuget\\packages\\glfw-net\\3.3.1\\glfw-net.3.3.1.nupkg.sha512"
+    "C:\\Users\\mstri\\.nuget\\packages\\glfw-net\\3.3.1\\glfw-net.3.3.1.nupkg.sha512"
   ],
   "logs": []
 }
