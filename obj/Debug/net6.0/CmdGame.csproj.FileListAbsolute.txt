@@ -1,0 +1,17 @@
+E:\CmdGame\bin\Debug\net6.0\CmdGame.exe
+E:\CmdGame\bin\Debug\net6.0\CmdGame.deps.json
+E:\CmdGame\bin\Debug\net6.0\CmdGame.runtimeconfig.json
+E:\CmdGame\bin\Debug\net6.0\CmdGame.dll
+E:\CmdGame\bin\Debug\net6.0\CmdGame.pdb
+E:\CmdGame\obj\Debug\net6.0\CmdGame.csproj.AssemblyReference.cache
+E:\CmdGame\obj\Debug\net6.0\CmdGame.GeneratedMSBuildEditorConfig.editorconfig
+E:\CmdGame\obj\Debug\net6.0\CmdGame.AssemblyInfoInputs.cache
+E:\CmdGame\obj\Debug\net6.0\CmdGame.AssemblyInfo.cs
+E:\CmdGame\obj\Debug\net6.0\CmdGame.csproj.CoreCompileInputs.cache
+E:\CmdGame\obj\Debug\net6.0\CmdGame.dll
+E:\CmdGame\obj\Debug\net6.0\refint\CmdGame.dll
+E:\CmdGame\obj\Debug\net6.0\CmdGame.pdb
+E:\CmdGame\obj\Debug\net6.0\CmdGame.genruntimeconfig.cache
+E:\CmdGame\obj\Debug\net6.0\ref\CmdGame.dll
+E:\CmdGame\bin\Debug\net6.0\GLFW.NET.dll
+E:\CmdGame\obj\Debug\net6.0\CmdGame.csproj.CopyComplete

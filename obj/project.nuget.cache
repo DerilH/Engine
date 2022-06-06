@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sX6tnGBkYHgAyO+jqZRtQNq4xP29YAhlObf6Fjpjq+Xb2JSwwOzR9IwQOTRGpJMPlu3V7HtLIy8vq7WNmHPBow==",
+  "success": true,
+  "projectFilePath": "E:\\CmdGame\\CmdGame.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\glfw-net\\3.3.1\\glfw-net.3.3.1.nupkg.sha512"
+  ],
+  "logs": []
+}
