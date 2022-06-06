@@ -24,14 +24,14 @@ namespace UrsaEngine
                 return _instance;
             }
         }
-        public BaseRenderer? renderer { get; private set; }
-        public bool IsStopping = false;
+        internal BaseRenderer? renderer { get; private set; }
+        public bool IsStopping {get; private set;} = false;
         private bool _initialized = false;
         private Engine() { }
 
         public void Init(RenderingLib lib, string WindowTitle, int WindowHeight, int WindowWidth)
         {
-            if(_initialized) throw new Exception("Engine already initialized");
+            if (_initialized) throw new Exception("Engine already initialized");
             _initialized = true;
             if (lib == RenderingLib.OpenGL)
             {
@@ -41,19 +41,20 @@ namespace UrsaEngine
         }
         public void Run()
         {
-            if(!_initialized) throw new Exception("Engine does not initialized");
+            if (!_initialized) throw new Exception("Engine does not initialized");
             Console.WriteLine("Engine starting");
 
             PhysicsEngine.StartPhysics();
-            renderer.StartRender();
+            renderer.Start();
 
         }
 
         public void Stop()
         {
-            DebugLogger.Log("Engine stopping");
-            this.IsStopping = true;
+            Console.WriteLine("Engine stopping");
+            IsStopping = true;
 
+            renderer.Stop();
             PhysicsEngine.Stop();
             Environment.Exit(0);
         }

@@ -1,6 +1,6 @@
 namespace UrsaEngine.Rendering
 {
-    public abstract class BaseRenderer
+    internal abstract class BaseRenderer
     {
         public string WindowTitle { get; protected set; }
         public int WindowWidth { get; protected set; }
@@ -16,6 +16,7 @@ namespace UrsaEngine.Rendering
             this.WindowHeight = WindowHeight;
         }
         
-        public abstract void StartRender();
+        public abstract void Start();
+        public abstract void Stop();
     }
 }
