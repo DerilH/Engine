@@ -4,14 +4,12 @@ namespace UrsaEngine.Physics
 {
     public static class PhysicsEngine
     {
-        public delegate void OnPhysicsUpdateDelegate();
-        public static event OnPhysicsUpdateDelegate OnPhysicsUpdate;
+        public static event BasicEvent OnPhysicsUpdate = () => {};
         private static bool _started = false;
         private static Thread? _physicsThread;
         private static CancellationTokenSource _physicsThreadCancel = new CancellationTokenSource();
         static PhysicsEngine()
         {
-            OnPhysicsUpdate += () => { };
         }
 
         public static void StartPhysics()

@@ -5,6 +5,7 @@ using UrsaEngine.Physics;
 
 namespace UrsaEngine
 {
+    public delegate void BasicEvent();
     public enum RenderingLib
     {
         DirectX,
@@ -24,9 +25,12 @@ namespace UrsaEngine
                 return _instance;
             }
         }
-        internal BaseRenderer? renderer { get; private set; }
+        internal BaseRenderer renderer { get; private set; }
         public bool IsStopping {get; private set;} = false;
         private bool _initialized = false;
+
+        public event BasicEvent OnInit = () => {}, OnStart = () => {}, OnStop = () => {};
+
         private Engine() { }
 
         public void Init(RenderingLib lib, string WindowTitle, int WindowHeight, int WindowWidth)
@@ -36,8 +40,11 @@ namespace UrsaEngine
             if (lib == RenderingLib.OpenGL)
             {
                 renderer = new OpenGLRenderer(WindowTitle, WindowHeight, WindowWidth);
+                renderer.Init();
             }
             else renderer = new OpenGLRenderer(WindowTitle, WindowHeight, WindowWidth);
+
+            OnInit.Invoke();
         }
         public void Run()
         {
@@ -45,14 +52,18 @@ namespace UrsaEngine
             Console.WriteLine("Engine starting");
 
             PhysicsEngine.StartPhysics();
-            renderer.Start();
+            OnStart.Invoke();
 
+            renderer.Start();
         }
 
         public void Stop()
         {
-            Console.WriteLine("Engine stopping");
+            if(IsStopping) return;
+            Console.WriteLine("Engine stoping");
             IsStopping = true;
+
+            OnStop.Invoke();
 
             renderer.Stop();
             PhysicsEngine.Stop();
