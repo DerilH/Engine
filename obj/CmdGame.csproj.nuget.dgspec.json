@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "StbiSharp": {
+              "target": "Package",
+              "version": "[1.2.1, )"
+            },
             "glfw-net": {
               "target": "Package",
               "version": "[3.3.1, )"
