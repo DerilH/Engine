@@ -2,14 +2,14 @@ namespace UrsaEngine.Math
 {
     public struct Vector3
     {
-        public static Vector3 Zero = new Vector3(0, 0, 0);
-        public static Vector3 One = new Vector3(1, 1, 1);
-        public static Vector3 Up = new Vector3(0, 1, 0);
-        public static Vector3 Down = new Vector3(0, -1, 0);
-        public static Vector3 Right = new Vector3(1, 0, 0);
-        public static Vector3 Left = new Vector3(-1, 0, 0);
-        public static Vector3 Forward = new Vector3(0, 0, 1);
-        public static Vector3 Back = new Vector3(0, 0, -1);
+        public static Vector3 Zero { get; } = new Vector3(0, 0, 0);
+        public static Vector3 One { get; } = new Vector3(1, 1, 1);
+        public static Vector3 Up { get; } = new Vector3(0, 1, 0);
+        public static Vector3 Down { get; } = new Vector3(0, -1, 0);
+        public static Vector3 Right { get; } = new Vector3(1, 0, 0);
+        public static Vector3 Left { get; } = new Vector3(-1, 0, 0);
+        public static Vector3 Forward { get; } = new Vector3(0, 0, 1);
+        public static Vector3 Back { get; } = new Vector3(0, 0, -1);
         public float x { get; set; } = 0;
         public float y { get; set; } = 0;
         public float z { get; set; } = 0;
@@ -32,7 +32,7 @@ namespace UrsaEngine.Math
             get
             {
                 if (magnitude <= 1) return Vector3.Zero;
-                return new Vector3(x / magnitude, y / magnitude, z / magnitude);
+                return this / magnitude;
             }
         }
         public Vector3(float x, float y, float z)
@@ -46,6 +46,12 @@ namespace UrsaEngine.Math
             this.x = value;
             this.y = value;
             this.z = value;
+        }
+        public Vector3(Vector2 vec, float z)
+        {
+            this.x = vec.x;
+            this.y = vec.y;
+            this.z = z;
         }
         public static Vector3 operator +(Vector3 left, Vector3 right)
              => new Vector3(left.x + right.x, left.y + right.y, left.z + right.z);
@@ -79,7 +85,7 @@ namespace UrsaEngine.Math
 
         public override bool Equals(object obj)
         {
-            if(obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != this.GetType()) return false;
             return this == (Vector3)obj;
         }
 

@@ -55,7 +55,7 @@ namespace UrsaEngine.Rendering.OpenGL
         {
             (obj as IGLRenderable).texture.Use(0);
             glBindVertexArray((obj as IGLRenderable).VAO);
-            currentShaderProgram.Set<mat4>("modelMatrix", (obj as IGLRenderable).modelMatrix);
+            //currentShaderProgram.Set<mat4>("modelMatrix", (obj as IGLRenderable).modelMatrix);
             glDrawArrays(GL_TRIANGLES, 0, (obj as IGLRenderable).verticesCount);
         }
 
