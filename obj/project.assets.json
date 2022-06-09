@@ -11,6 +11,15 @@
           "lib/netstandard2.0/GLFW.NET.dll": {}
         }
       },
+      "GlmNet/0.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/GlmNet.dll": {}
+        },
+        "runtime": {
+          "lib/net40/GlmNet.dll": {}
+        }
+      },
       "StbiSharp/1.2.1": {
         "type": "package",
         "compile": {
@@ -54,6 +63,19 @@
         "lib/netstandard2.0/GLFW.NET.xml"
       ]
     },
+    "GlmNet/0.7.0": {
+      "sha512": "g3EFJOV89dWppRVT5PJ8nVYWSEIoB4yqqEZy71ryb3mfxSGrvwqxsF+XbK+J0jUgSwRIYEWHqodvtd3LchlE+w==",
+      "type": "package",
+      "path": "glmnet/0.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "glmnet.0.7.0.nupkg.sha512",
+        "glmnet.nuspec",
+        "lib/net40/GlmNet.XML",
+        "lib/net40/GlmNet.dll"
+      ]
+    },
     "StbiSharp/1.2.1": {
       "sha512": "jbi94g3UDVAC3vH6jKZmmADH4Z6tGqbcdlyGhT/WZN9UE8OjjvpGFE5zF+UCSmIdya6iJ+Zo5VvxdQywSKN0Uw==",
       "type": "package",
@@ -76,6 +98,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "GlmNet >= 0.7.0",
       "StbiSharp >= 1.2.1",
       "glfw-net >= 3.3.1"
     ]
@@ -86,11 +109,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\CmdGame\\CmdGame.csproj",
+      "projectUniqueName": "E:\\Engine\\CmdGame.csproj",
       "projectName": "CmdGame",
-      "projectPath": "E:\\CmdGame\\CmdGame.csproj",
+      "projectPath": "E:\\Engine\\CmdGame.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "E:\\CmdGame\\obj\\",
+      "outputPath": "E:\\Engine\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -117,6 +140,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "GlmNet": {
+            "target": "Package",
+            "version": "[0.7.0, )"
+          },
           "StbiSharp": {
             "target": "Package",
             "version": "[1.2.1, )"
@@ -144,5 +171,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"GlmNet 0.7.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "GlmNet",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

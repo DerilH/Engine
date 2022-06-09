@@ -1,6 +1,7 @@
 using GLFW;
 using GLFW.Game;
 using UrsaEngine;
+using GlmNet;
 using static OpenGL.GL;
 namespace UrsaEngine.Rendering.OpenGL
 {
@@ -26,10 +27,11 @@ namespace UrsaEngine.Rendering.OpenGL
             Glfw.WindowHint(Hint.Decorated, true);
 
             CreateWindow();
-            currentShaderProgram = new ShaderProgram();
             string currentDir = Directory.GetCurrentDirectory();
+            currentShaderProgram = new ShaderProgram();
             currentShaderProgram.LoadShadersFromFile(currentDir + @"\Rendering\OpenGL\Shaders\BaseVertexShader.vs", currentDir + @"\Rendering\OpenGL\Shaders\BaseFragmentShader.fs");
             currentShaderProgram.Compile();
+            currentShaderProgram.Use();
             InitPrimitives();
 
             _inited = true;
@@ -51,7 +53,9 @@ namespace UrsaEngine.Rendering.OpenGL
 
         public override void DrawObject(Object obj)
         {
+            (obj as IGLRenderable).texture.Use(0);
             glBindVertexArray((obj as IGLRenderable).VAO);
+            currentShaderProgram.Set<mat4>("modelMatrix", (obj as IGLRenderable).modelMatrix);
             glDrawArrays(GL_TRIANGLES, 0, (obj as IGLRenderable).verticesCount);
         }
 
@@ -84,9 +88,9 @@ namespace UrsaEngine.Rendering.OpenGL
             Object.Triangle = new Object();
             (Object.Triangle as IGLRenderable).vertices = new float[]
             {
-                -0.5f, -0.5f, 0.0f,
-                 0.5f, -0.5f, 0.0f,
-                 0.0f,  0.5f, 0.0f
+                -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+                 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+                 0.0f,  0.5f, 0.0f, 0.5f, 1.0f
             };
             (Object.Triangle as IGLRenderable).verticesCount = 3;
             GLObjectBuilder.CreateGLObject(Object.Triangle);

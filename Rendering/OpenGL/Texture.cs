@@ -29,10 +29,16 @@ namespace UrsaEngine.Rendering.OpenGL
             }
             fixed(byte* data = &Image.Data.ToArray()[0])
             {
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
                 glGenerateMipmap(GL_TEXTURE_2D);
             }
             Image.Dispose();
+        }
+
+        public void Use(int unit)
+        {
+            glActiveTexture(GL_TEXTURE0 + unit);
+            glBindTexture(GL_TEXTURE_2D, ID);
         }
     }
 }

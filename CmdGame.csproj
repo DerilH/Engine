@@ -6,10 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>8618, 8605, 8600</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="glfw-net" Version="3.3.1" />
+    <PackageReference Include="GlmNet" Version="0.7.0" />
     <PackageReference Include="StbiSharp" Version="1.2.1" />
   </ItemGroup>
 

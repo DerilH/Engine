@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\CmdGame\\CmdGame.csproj": {}
+    "E:\\Engine\\CmdGame.csproj": {}
   },
   "projects": {
-    "E:\\CmdGame\\CmdGame.csproj": {
+    "E:\\Engine\\CmdGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\CmdGame\\CmdGame.csproj",
+        "projectUniqueName": "E:\\Engine\\CmdGame.csproj",
         "projectName": "CmdGame",
-        "projectPath": "E:\\CmdGame\\CmdGame.csproj",
+        "projectPath": "E:\\Engine\\CmdGame.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "E:\\CmdGame\\obj\\",
+        "outputPath": "E:\\Engine\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "GlmNet": {
+              "target": "Package",
+              "version": "[0.7.0, )"
+            },
             "StbiSharp": {
               "target": "Package",
               "version": "[1.2.1, )"

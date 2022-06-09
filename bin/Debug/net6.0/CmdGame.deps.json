@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "CmdGame/1.0.0": {
         "dependencies": {
+          "GlmNet": "0.7.0",
+          "StbiSharp": "1.2.1",
           "glfw-net": "3.3.1"
         },
         "runtime": {
@@ -19,6 +21,44 @@
           "lib/netstandard2.0/GLFW.NET.dll": {
             "assemblyVersion": "1.0.1.0",
             "fileVersion": "1.0.1.0"
+          }
+        }
+      },
+      "GlmNet/0.7.0": {
+        "runtime": {
+          "lib/net40/GlmNet.dll": {
+            "assemblyVersion": "0.7.0.0",
+            "fileVersion": "0.7.0.0"
+          }
+        }
+      },
+      "StbiSharp/1.2.1": {
+        "runtime": {
+          "lib/netcoreapp3.0/StbiSharp.dll": {
+            "assemblyVersion": "1.2.1.0",
+            "fileVersion": "1.2.1.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libstbi.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/libstbi.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/stbi.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/stbi.lib": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
           }
         }
       }
@@ -36,6 +76,20 @@
       "sha512": "sha512-TpFcYN+/YjBRRJ1O3L6V1y2YpT15AgGn8DRFtsXow76++x9QC8m+mxb38Uv43N4Xh4//k9NkxlIhF/Ci2khqqA==",
       "path": "glfw-net/3.3.1",
       "hashPath": "glfw-net.3.3.1.nupkg.sha512"
+    },
+    "GlmNet/0.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-g3EFJOV89dWppRVT5PJ8nVYWSEIoB4yqqEZy71ryb3mfxSGrvwqxsF+XbK+J0jUgSwRIYEWHqodvtd3LchlE+w==",
+      "path": "glmnet/0.7.0",
+      "hashPath": "glmnet.0.7.0.nupkg.sha512"
+    },
+    "StbiSharp/1.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jbi94g3UDVAC3vH6jKZmmADH4Z6tGqbcdlyGhT/WZN9UE8OjjvpGFE5zF+UCSmIdya6iJ+Zo5VvxdQywSKN0Uw==",
+      "path": "stbisharp/1.2.1",
+      "hashPath": "stbisharp.1.2.1.nupkg.sha512"
     }
   }
 }

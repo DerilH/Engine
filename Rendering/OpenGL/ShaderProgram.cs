@@ -1,5 +1,6 @@
 using GLFW;
 using System.IO;
+using GlmNet;
 using static OpenGL.GL;
 
 namespace UrsaEngine.Rendering.OpenGL
@@ -11,7 +12,7 @@ namespace UrsaEngine.Rendering.OpenGL
         public string FragmentShaderSrc { get; private set; }
         public bool Compiled { get; private set; } = false;
 
-        public ShaderProgram() { }
+        public ShaderProgram(){}
         public ShaderProgram(string VertexShaderSrc, string FragmentShaderSrc)
         {
             this.VertexShaderSrc = VertexShaderSrc;
@@ -81,6 +82,36 @@ namespace UrsaEngine.Rendering.OpenGL
         {
             if (!Compiled) throw new System.Exception("Shader program does not compiled");
             glUseProgram(ID);
+        }
+        public void Set<T>(string name, T value)
+        {
+            int loc = glGetUniformLocation(ID, name);
+            Type type = typeof(T);
+            if(type == typeof(int) || type == typeof(bool))
+            {
+               glUniform1i(loc, (int)(object)value); 
+            } else if(type == typeof(float))
+            {
+               glUniform1f(loc, (float)(object)value); 
+            }else if(type == typeof(vec2))
+            {
+               glUniform2fv(loc, 1, ((vec2)(object)value).to_array()); 
+            }else if(type == typeof(vec3))
+            {
+               glUniform3fv(loc, 1, ((vec3)(object)value).to_array());  
+            }else if(type == typeof(vec4))
+            {
+               glUniform3fv(loc, 1, ((vec4)(object)value).to_array());  
+            }else if(type == typeof(mat2))
+            {
+               glUniformMatrix2fv(loc, 1, false, ((mat2)(object)value).to_array());  
+            }else if(type == typeof(mat3))
+            {
+               glUniformMatrix3fv(loc, 1, false, ((mat3)(object)value).to_array());  
+            }else if(type == typeof(mat3))
+            {
+               glUniformMatrix3fv(loc, 1, false, ((mat4)(object)value).to_array());  
+            }
         }
     }
 }
