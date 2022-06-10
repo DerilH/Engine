@@ -3,12 +3,12 @@ namespace UrsaEngine.Math
 {
     public struct Vector2
     {
-        public static Vector2 Zero { get => new Vector2(0, 0); }
-        public static Vector2 One { get => new Vector2(1, 1); } 
-        public static Vector2 Up { get => new Vector2(0, 1); } 
-        public static Vector2 Down { get => new Vector2(0, -1); } 
-        public static Vector2 Right { get => new Vector2(1, 0); }
-        public static Vector2 Left { get => new Vector2(-1, 0); } 
+        public static Vector2 Zero { get; } = new Vector2(0, 0);
+        public static Vector2 One { get; } = new Vector2(1, 1);
+        public static Vector2 Up { get; } = new Vector2(0, 1);
+        public static Vector2 Down { get; } = new Vector2(0, -1);
+        public static Vector2 Right { get; } = new Vector2(1, 0);
+        public static Vector2 Left { get; } = new Vector2(-1, 0);
         public float x { get; set; } = 0;
         public float y { get; set; } = 0;
         public float magnitude
@@ -47,7 +47,7 @@ namespace UrsaEngine.Math
              => new Vector2(left.x + right.x, left.y + right.y);
         public static Vector2 operator -(Vector2 left, Vector2 right)
             => new Vector2(left.x + (-right.x), left.y + (-right.y));
-        public static Vector2 operator-(Vector2 vec) => new Vector2(-vec.x, -vec.y);
+        public static Vector2 operator -(Vector2 vec) => new Vector2(-vec.x, -vec.y);
         public static Vector2 operator *(Vector2 left, float number)
             => new Vector2(left.x * number, left.y * number);
         public static Vector2 operator /(Vector2 left, float number)

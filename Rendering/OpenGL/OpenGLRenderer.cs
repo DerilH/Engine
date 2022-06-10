@@ -56,9 +56,9 @@ namespace UrsaEngine.Rendering.OpenGL
         {
             (obj as IGLRenderable).texture.Use(0);
             glBindVertexArray((obj as IGLRenderable).VAO);
-            Matrix4x4 trs = Matrix4x4.TRS(obj.transform.scale, obj.transform.rotation, obj.transform.position);
-            Matrix4x4 t = Matrix4x4.Translate(obj.transform.position);
-            currentShaderProgram.Set<Matrix4x4>("modelMatrix", t);
+            Matrix4x4 trs = Matrix4x4.TRS(Vector3.One, Quaternion.Identity, obj.transform.position);
+            Matrix4x4 t = Matrix4x4.Translate( new Vector3(0.5f, 0, 0));
+            currentShaderProgram.Set<Matrix4x4>("modelMatrix", trs);
             glDrawArrays(GL_TRIANGLES, 0, (obj as IGLRenderable).verticesCount);
         }
 

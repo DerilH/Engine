@@ -15,7 +15,8 @@ namespace Program
             Engine.instance.OnStart += () =>
             {
                 Object newObj = Object.Instantiate(Object.Triangle);
-                newObj.transform.position = new Vector3(0, 0, 20);
+                newObj.transform.position = new Vector3(0.5f, 0, 0);
+                
             };
             Engine.instance.Run();
         }

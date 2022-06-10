@@ -1,8 +1,8 @@
 namespace UrsaEngine.Math
 {
-    public class Quaternion
+    public struct Quaternion
     {
-        public static Quaternion Identity { get => new Quaternion(0, 0, 0, 1); }
+        public static Quaternion Identity { get; } = new Quaternion(0, 0, 0, 1);
         public float x { get; set; } = 0;
         public float y { get; set; } = 0;
         public float z { get; set; } = 0;

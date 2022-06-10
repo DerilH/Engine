@@ -2,15 +2,15 @@ namespace UrsaEngine.Math
 {
     public struct Vector3
     {
-        public static Vector3 Zero { get => new Vector3(0, 0, 0); }
-        public static Vector3 One { get => new Vector3(1, 1, 1); }
-        public static Vector3 Up { get => new Vector3(0, 1, 0); }
-        public static Vector3 Down { get => new Vector3(0, -1, 0); }
-        public static Vector3 Right { get => new Vector3(1, 0, 0); }
-        public static Vector3 Left { get => new Vector3(-1, 0, 0); }
-
-        public static Vector3 Forward { get => new Vector3(0, 0, 1); }
-        public static Vector3 Back { get => new Vector3(0, 0, -1); }
+        public static Vector3 Zero { get; } = new Vector3(0, 0, 0);
+        public static Vector3 One { get; } = new Vector3(1, 1, 1);
+        public static Vector3 Up { get ; }= new Vector3(0, 1, 0);
+        public static Vector3 Down { get; } = new Vector3(0, -1, 0);
+        public static Vector3 Right { get; } = new Vector3(1, 0, 0);
+        public static Vector3 Left { get ; }= new Vector3(-1, 0, 0);
+        public static Vector3 Forward { get ; }= new Vector3(0, 0, 1);
+        public static Vector3 Back { get; } = new Vector3(0, 0, -1);
+        
         public float x { get; set; } = 0;
         public float y { get; set; } = 0;
         public float z { get; set; } = 0;

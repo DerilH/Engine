@@ -2,8 +2,8 @@ namespace UrsaEngine.Math
 {
     public struct Vector4
     {
-        public static Vector4 Zero { get => new Vector4(0, 0, 0, 0); }
-        public static Vector4 One { get => new Vector4(1, 1, 1, 1); }
+        public static Vector4 Zero { get; } = new Vector4(0, 0, 0, 0);
+        public static Vector4 One { get; } = new Vector4(1, 1, 1, 1);
         public float x { get; set; } = 0;
         public float y { get; set; } = 0;
         public float z { get; set; } = 0;
@@ -55,7 +55,7 @@ namespace UrsaEngine.Math
              => new Vector4(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
         public static Vector4 operator -(Vector4 left, Vector4 right)
             => new Vector4(left.x + (-right.x), left.y + (-right.y), left.z + (-right.z), left.w + (-right.w));
-        public static Vector4 operator-(Vector4 vec) => new Vector4(-vec.x, -vec.y, -vec.z, -vec.w);
+        public static Vector4 operator -(Vector4 vec) => new Vector4(-vec.x, -vec.y, -vec.z, -vec.w);
         public static Vector4 operator *(Vector4 left, float number)
             => new Vector4(left.x * number, left.y * number, left.z * number, left.w * number);
         public static Vector4 operator /(Vector4 left, float number)

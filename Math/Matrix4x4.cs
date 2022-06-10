@@ -1,19 +1,16 @@
 using UrsaEngine.Math;
 namespace UrsaEngine.Math
 {
-    public class Matrix4x4
+    public struct Matrix4x4
     {
-        public static Matrix4x4 Identity
-        {
-            get => new Matrix4x4(new float[,]
+        public static Matrix4x4 Identity { get; } = new Matrix4x4(new float[,]
         {
             {1.0f, 0.0f, 0.0f, 0.0f},
             {0.0f, 1.0f, 0.0f, 0.0f},
             {0.0f, 0.0f, 1.0f, 0.0f},
             {0.0f, 0.0f, 0.0f, 1.0f}
         });
-        }
-        public static Matrix4x4 Zero { get => new Matrix4x4(0); }
+        public static Matrix4x4 Zero { get; } = new Matrix4x4(0);
 
         private float[,] matArr = new float[4, 4];
         public Matrix4x4() { }
@@ -84,30 +81,59 @@ namespace UrsaEngine.Math
             result[3, 2] = translation.z;
             return result;
         }
+        /* public static Matrix4x4 Rotate(Quaternion rotation)
+         {
+             //float r0c0 = 2(rotation.w * rotation.w + rotation.x * rotation.x) - 1;
+             float r0c0 = rotation.w * rotation.w + rotation.x * rotation.x - rotation.y * rotation.y - rotation.z * rotation.z;
+             float r1c0 = 2 * (rotation.x * rotation.y + rotation.w * rotation.z);
+             float r2c0 = 2 * (rotation.x * rotation.w - rotation.w * rotation.y);
+
+             //float r0c1 = 2(rotation.x * rotation.y - rotation.w * rotation.z);
+             float r0c1 = rotation.w * rotation.w - rotation.x * rotation.x + rotation.y * rotation.y - rotation.z * rotation.z;
+             float r1c1 = 2 * (rotation.w * rotation.w + rotation.y * rotation.y) - 1;
+             float r2c1 = 2 * (rotation.y * rotation.z + rotation.w * rotation.x);
+
+             //float r0c2 = 2(rotation.x * rotation.z + rotation.w * rotation.y);
+             float r0c2 = rotation.w * rotation.w - rotation.x * rotation.x - rotation.y * rotation.y + rotation.z * rotation.z;
+             float r1c2 = 2 * (rotation.y * rotation.z - rotation.w * rotation.x);
+             float r2c2 = 2 * (rotation.w * rotation.w + rotation.z * rotation.z) - 1;
+             Matrix4x4 mat = new Matrix4x4(new float[4, 4]
+                 {
+                     {r0c0, r0c1, r0c2, 0.0f},
+                     {r1c0, r1c1, r1c2, 0.0f},
+                     {r2c0, r2c1, r2c2, 0.0f},
+                     {0.0f, 0.0f, 0.0f, 1.0f}
+                 });
+             return Matrix4x4.Identity * mat;
+         }*/
         public static Matrix4x4 Rotate(Quaternion rotation)
         {
-            //float r0c0 = 2(rotation.w * rotation.w + rotation.x * rotation.x) - 1;
-            float r0c0 = rotation.w * rotation.w + rotation.x * rotation.x - rotation.y * rotation.y - rotation.z * rotation.z;
-            float r1c0 = 2 * (rotation.x * rotation.y + rotation.w * rotation.z);
-            float r2c0 = 2 * (rotation.x * rotation.w - rotation.w * rotation.y);
+            float x = rotation.x;
+            float y = rotation.y;
+            float z = rotation.y;
+            float w = rotation.w;
 
-            //float r0c1 = 2(rotation.x * rotation.y - rotation.w * rotation.z);
-            float r0c1 = rotation.w * rotation.w - rotation.x * rotation.x + rotation.y * rotation.y - rotation.z * rotation.z;
-            float r1c1 = 2 * (rotation.w * rotation.w + rotation.y * rotation.y) - 1;
-            float r2c1 = 2 * (rotation.y * rotation.z + rotation.w * rotation.x);
 
-            //float r0c2 = 2(rotation.x * rotation.z + rotation.w * rotation.y);
-            float r0c2 = rotation.w * rotation.w - rotation.x * rotation.x - rotation.y * rotation.y + rotation.z * rotation.z;
-            float r1c2 = 2 * (rotation.y * rotation.z - rotation.w * rotation.x);
-            float r2c2 = 2 * (rotation.w * rotation.w + rotation.z * rotation.z) - 1;
-            Matrix4x4 mat = new Matrix4x4(new float[4, 4]
-                {
-                    {r0c0, r0c1, r0c2, 0.0f},
-                    {r1c0, r1c1, r1c2, 0.0f},
-                    {r2c0, r2c1, r2c2, 0.0f},
-                    {0.0f, 0.0f, 0.0f, 1.0f}
-                });
-            return Matrix4x4.Identity * mat;
+            var c = (float)Math.Cos((double)angle);
+            var s = (float)Math.Sin((double)angle);
+        
+            var axis = v.Normalized;
+            var temp = (1 - c) * axis;
+        
+            var m = Identity;
+            m.m00 = c + temp.x * axis.x;
+            m.m01 = 0 + temp.x * axis.y + s * axis.z;
+            m.m02 = 0 + temp.x * axis.z - s * axis.y;
+        
+            m.m10 = 0 + temp.y * axis.x - s * axis.z;
+            m.m11 = c + temp.y * axis.y;
+            m.m12 = 0 + temp.y * axis.z + s * axis.x;
+        
+            m.m20 = 0 + temp.z * axis.x + s * axis.y;
+            m.m21 = 0 + temp.z * axis.y - s * axis.x;
+            m.m22 = c + temp.z * axis.z;
+            return m;
+            return  mat;
         }
         public static Matrix4x4 TRS(Vector3 scale, Quaternion rotation, Vector3 translation)
         {
@@ -172,5 +198,15 @@ namespace UrsaEngine.Math
             return left;
         }
         public float[,] ToArray() => matArr;
+        public override string ToString()
+        {
+            string str = "{ ";
+            foreach (float n in matArr)
+            {
+                str += n + ", ";
+            }
+            str += "}";
+            return str;
+        }
     }
 }
