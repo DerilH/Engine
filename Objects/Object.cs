@@ -11,7 +11,7 @@ namespace UrsaEngine
         uint IGLRenderable.VAO { get; set; } = 0;
         uint IGLRenderable.VBO { get; set; } = 0;
         Texture IGLRenderable.texture { get; set; }
-        public Transform transform {get; private set;}
+        public Transform transform {get; set;} = new Transform();
 
         public static Object Instantiate(Object original)
         {

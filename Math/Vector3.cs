@@ -2,14 +2,15 @@ namespace UrsaEngine.Math
 {
     public struct Vector3
     {
-        public static Vector3 Zero { get; } = new Vector3(0, 0, 0);
-        public static Vector3 One { get; } = new Vector3(1, 1, 1);
-        public static Vector3 Up { get; } = new Vector3(0, 1, 0);
-        public static Vector3 Down { get; } = new Vector3(0, -1, 0);
-        public static Vector3 Right { get; } = new Vector3(1, 0, 0);
-        public static Vector3 Left { get; } = new Vector3(-1, 0, 0);
-        public static Vector3 Forward { get; } = new Vector3(0, 0, 1);
-        public static Vector3 Back { get; } = new Vector3(0, 0, -1);
+        public static Vector3 Zero { get => new Vector3(0, 0, 0); }
+        public static Vector3 One { get => new Vector3(1, 1, 1); }
+        public static Vector3 Up { get => new Vector3(0, 1, 0); }
+        public static Vector3 Down { get => new Vector3(0, -1, 0); }
+        public static Vector3 Right { get => new Vector3(1, 0, 0); }
+        public static Vector3 Left { get => new Vector3(-1, 0, 0); }
+
+        public static Vector3 Forward { get => new Vector3(0, 0, 1); }
+        public static Vector3 Back { get => new Vector3(0, 0, -1); }
         public float x { get; set; } = 0;
         public float y { get; set; } = 0;
         public float z { get; set; } = 0;
@@ -55,8 +56,9 @@ namespace UrsaEngine.Math
         }
         public static Vector3 operator +(Vector3 left, Vector3 right)
              => new Vector3(left.x + right.x, left.y + right.y, left.z + right.z);
-        public static Vector3 operator -(Vector3 left, Vector3 right)
+        public static Vector3 operator-(Vector3 left, Vector3 right)
             => new Vector3(left.x + (-right.x), left.y + (-right.y), left.z + (-right.z));
+        public static Vector3 operator-(Vector3 vec) => new Vector3(-vec.x, -vec.y, -vec.z);
         public static Vector3 operator *(Vector3 left, float number)
             => new Vector3(left.x * number, left.y * number, left.z * number);
         public static Vector3 operator /(Vector3 left, float number)
@@ -88,7 +90,29 @@ namespace UrsaEngine.Math
             if (obj.GetType() != this.GetType()) return false;
             return this == (Vector3)obj;
         }
-
+        public float this[int i]
+        {
+            get
+            {
+                switch (i)
+                {
+                    case 0: return x;
+                    case 1: return y;
+                    case 2: return z;
+                    default: throw new IndexOutOfRangeException();
+                }
+            }
+            set
+            {
+                switch (i)
+                {
+                    case 0: x = value; break;
+                    case 1: y = value; break;
+                    case 2: z = value; break;
+                    default: throw new IndexOutOfRangeException();
+                }
+            }
+        }
         public override int GetHashCode()
         {
             throw new NotImplementedException();

@@ -2,8 +2,8 @@ namespace UrsaEngine.Math
 {
     public struct Vector4
     {
-        public static Vector4 Zero { get; } = new Vector4(0, 0, 0, 0);
-        public static Vector4 One { get; } = new Vector4(1, 1, 1, 1);
+        public static Vector4 Zero { get => new Vector4(0, 0, 0, 0); }
+        public static Vector4 One { get => new Vector4(1, 1, 1, 1); }
         public float x { get; set; } = 0;
         public float y { get; set; } = 0;
         public float z { get; set; } = 0;
@@ -55,6 +55,7 @@ namespace UrsaEngine.Math
              => new Vector4(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
         public static Vector4 operator -(Vector4 left, Vector4 right)
             => new Vector4(left.x + (-right.x), left.y + (-right.y), left.z + (-right.z), left.w + (-right.w));
+        public static Vector4 operator-(Vector4 vec) => new Vector4(-vec.x, -vec.y, -vec.z, -vec.w);
         public static Vector4 operator *(Vector4 left, float number)
             => new Vector4(left.x * number, left.y * number, left.z * number, left.w * number);
         public static Vector4 operator /(Vector4 left, float number)
@@ -82,7 +83,31 @@ namespace UrsaEngine.Math
             if (obj.GetType() != this.GetType()) return false;
             return this == (Vector4)obj;
         }
-
+        public float this[int i]
+        {
+            get
+            {
+                switch (i)
+                {
+                    case 0: return x;
+                    case 1: return y;
+                    case 2: return z;
+                    case 3: return w;
+                    default: throw new IndexOutOfRangeException();
+                }
+            }
+            set
+            {
+                switch (i)
+                {
+                    case 0: x = value; break;
+                    case 1: y = value; break;
+                    case 2: z = value; break;
+                    case 3: w = value; break;
+                    default: throw new IndexOutOfRangeException();
+                }
+            }
+        }
         public override int GetHashCode()
         {
             throw new NotImplementedException();

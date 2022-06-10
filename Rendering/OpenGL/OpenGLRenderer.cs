@@ -2,6 +2,7 @@ using GLFW;
 using GLFW.Game;
 using UrsaEngine;
 using GlmNet;
+using UrsaEngine.Math;
 using static OpenGL.GL;
 namespace UrsaEngine.Rendering.OpenGL
 {
@@ -51,11 +52,13 @@ namespace UrsaEngine.Rendering.OpenGL
             Engine.instance.Stop();
         }
 
-        public override void DrawObject(Object obj)
+        public unsafe override void DrawObject(Object obj)
         {
             (obj as IGLRenderable).texture.Use(0);
             glBindVertexArray((obj as IGLRenderable).VAO);
-            //currentShaderProgram.Set<mat4>("modelMatrix", (obj as IGLRenderable).modelMatrix);
+            Matrix4x4 trs = Matrix4x4.TRS(obj.transform.scale, obj.transform.rotation, obj.transform.position);
+            Matrix4x4 t = Matrix4x4.Translate(obj.transform.position);
+            currentShaderProgram.Set<Matrix4x4>("modelMatrix", t);
             glDrawArrays(GL_TRIANGLES, 0, (obj as IGLRenderable).verticesCount);
         }
 
