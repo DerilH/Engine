@@ -55,10 +55,12 @@ namespace UrsaEngine.Rendering.OpenGL
         public unsafe override void DrawObject(Object obj)
         {
             (obj as IGLRenderable).texture.Use(0);
-            glBindVertexArray((obj as IGLRenderable).VAO);
-            Matrix4x4 trs = Matrix4x4.TRS(Vector3.One, Quaternion.Identity, obj.transform.position);
-            Matrix4x4 t = Matrix4x4.Translate( new Vector3(0.5f, 0, 0));
+            Matrix4x4 trs = Matrix4x4.TRS(Vector3.One, new Vector3(0,0,1),0, Vector3.Zero);
+            Matrix4x4 t = Matrix4x4.Translate( new Vector3(0f, 0, 0));
+            Matrix4x4 r = Matrix4x4.Rotate( new Vector3(0,0,1), 180);
+
             currentShaderProgram.Set<Matrix4x4>("modelMatrix", trs);
+            glBindVertexArray((obj as IGLRenderable).VAO);
             glDrawArrays(GL_TRIANGLES, 0, (obj as IGLRenderable).verticesCount);
         }
 

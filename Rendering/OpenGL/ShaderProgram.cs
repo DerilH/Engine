@@ -115,16 +115,17 @@ namespace UrsaEngine.Rendering.OpenGL
             {
                 glUniformMatrix3fv(loc, 1, false, ((mat3)(object)value).to_array());
             }
-            else if (type == typeof(mat3))
+            else if (type == typeof(mat4))
             {
-                glUniformMatrix3fv(loc, 1, false, ((mat4)(object)value).to_array());
+                glUniformMatrix4fv(loc, 1, false, ((mat4)(object)value).to_array());
+                UrsaEngine.Logging.DebugLogger.LogArray(((mat4)(object)value).to_array());
             }
             else if (type == typeof(UrsaEngine.Math.Matrix4x4))
             {
-                fixed (float* arr = &(((UrsaEngine.Math.Matrix4x4)(object)value).ToArray())[0, 0])
-                {
-                    glUniformMatrix4fv(loc, 1, false, arr);
-                }
+                //fixed (float* arr = &(((UrsaEngine.Math.Matrix4x4)(object)value).To2DArray())[0, 0])
+                //{
+                    glUniformMatrix4fv(loc, 1, false, ((UrsaEngine.Math.Matrix4x4)(object)value).ToArray());
+                //}
             }
         }
     }

@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5l+UmtGQNxCZLIh2Ikw9Ip0HuBqK4IB21xV2pmzN9h0VjPlNyz3bsVkhajcLHcd+l3KlQFO8fsVmd3Ti4QCITg==",
+  "dgSpecHash": "MpDJ7q8g0aCunG7E7oe2NPoXpWttue8aIojE50oSFJmPnwU6wroKxqowSDWTWDbqBiCifeX2gb6JCtaku4PdVw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mstri\\source\\repos\\Engines\\Current\\Engine\\CmdGame.csproj",
+  "projectFilePath": "E:\\Engine\\CmdGame.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mstri\\.nuget\\packages\\glfw-net\\3.3.1\\glfw-net.3.3.1.nupkg.sha512",
-    "C:\\Users\\mstri\\.nuget\\packages\\glmnet\\0.7.0\\glmnet.0.7.0.nupkg.sha512",
-    "C:\\Users\\mstri\\.nuget\\packages\\stbisharp\\1.2.1\\stbisharp.1.2.1.nupkg.sha512"
+    "C:\\Users\\HP\\.nuget\\packages\\glfw-net\\3.3.1\\glfw-net.3.3.1.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\glmnet\\0.7.0\\glmnet.0.7.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\stbisharp\\1.2.1\\stbisharp.1.2.1.nupkg.sha512"
   ],
   "logs": [
     {
