@@ -12,17 +12,11 @@ namespace UrsaEngine
         uint IGLRenderable.VBO { get; set; } = 0;
         Texture IGLRenderable.texture { get; set; }
         public Transform transform {get; set;} = new Transform();
-
         public static Object Instantiate(Object original)
         {
             Object clone = original.Clone();
             Engine.instance.renderer.AddToRender(clone);
             return clone;
-        }
-        
-        public Object Clone()
-        {
-            return (Object)MemberwiseClone();
         }
     }
 }

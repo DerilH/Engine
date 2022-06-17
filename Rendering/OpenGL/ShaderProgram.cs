@@ -1,6 +1,8 @@
 using GLFW;
 using System.IO;
+using System.Numerics;
 using GlmNet;
+using System.Linq;
 using static OpenGL.GL;
 
 namespace UrsaEngine.Rendering.OpenGL
@@ -120,13 +122,11 @@ namespace UrsaEngine.Rendering.OpenGL
                 glUniformMatrix4fv(loc, 1, false, ((mat4)(object)value).to_array());
                 UrsaEngine.Logging.DebugLogger.LogArray(((mat4)(object)value).to_array());
             }
-            else if (type == typeof(UrsaEngine.Math.Matrix4x4))
+            else if (type == typeof(Matrix4x4))
             {
-                //fixed (float* arr = &(((UrsaEngine.Math.Matrix4x4)(object)value).To2DArray())[0, 0])
-                //{
-                    glUniformMatrix4fv(loc, 1, false, ((UrsaEngine.Math.Matrix4x4)(object)value).ToArray());
-                //}
+                glUniformMatrix4fv(loc, 1, false, ((Matrix4x4)(object)value).ToArray());
             }
         }
     }
 }
+

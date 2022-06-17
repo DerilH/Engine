@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Engine\\CmdGame.csproj": {}
+    "C:\\Users\\mstri\\source\\repos\\Engines\\Current\\Engine\\CmdGame.csproj": {}
   },
   "projects": {
-    "E:\\Engine\\CmdGame.csproj": {
+    "C:\\Users\\mstri\\source\\repos\\Engines\\Current\\Engine\\CmdGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Engine\\CmdGame.csproj",
+        "projectUniqueName": "C:\\Users\\mstri\\source\\repos\\Engines\\Current\\Engine\\CmdGame.csproj",
         "projectName": "CmdGame",
-        "projectPath": "E:\\Engine\\CmdGame.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "E:\\Engine\\obj\\",
+        "projectPath": "C:\\Users\\mstri\\source\\repos\\Engines\\Current\\Engine\\CmdGame.csproj",
+        "packagesPath": "C:\\Users\\mstri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mstri\\source\\repos\\Engines\\Current\\Engine\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mstri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

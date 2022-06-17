@@ -1,8 +1,9 @@
 using UrsaEngine.Math;
 namespace UrsaEngine.Math
 {
-    public struct Matrix4x4
+    public partial struct Matrix4x4
     {
+        #region static
         public static Matrix4x4 Identity { get; } = new Matrix4x4(new float[,]
         {
             {1.0f, 0.0f, 0.0f, 0.0f},
@@ -11,8 +12,9 @@ namespace UrsaEngine.Math
             {0.0f, 0.0f, 0.0f, 1.0f}
         });
         public static Matrix4x4 Zero { get; } = new Matrix4x4(0);
-
+        #endregion
         private float[,] matArr = new float[4, 4];
+
         public Matrix4x4() { }
         public Matrix4x4(Vector4 vec1, Vector4 vec2, Vector4 vec3, Vector4 vec4)
         {
@@ -50,6 +52,7 @@ namespace UrsaEngine.Math
         {
             matArr = arr;
         }
+        #region Data Access
         public float this[int row, int col]
         {
             get
@@ -68,7 +71,10 @@ namespace UrsaEngine.Math
         public float[] GetRow(int row)
             => new float[] { matArr[row, 0], matArr[row, 1], matArr[row, 2], matArr[row, 3] };
         public float[] GetCol(int col)
-            => new float[] { matArr[0, col], matArr[1, col], matArr[2, col], matArr[3, col] };
+            => new float[] { matArr[0, col], matArr[1, col], matArr[2, col], matArr[3, col]};
+
+#endregion
+        #region Transformations
         public static Matrix4x4 Scale(Vector3 scale)
         {
             Matrix4x4 result = Matrix4x4.Identity;
@@ -76,6 +82,14 @@ namespace UrsaEngine.Math
             result[1, 1] = scale.y;
             result[2, 2] = scale.z;
             return result;
+        }
+        public static Matrix4x4 Scale(Matrix4x4 matrix, Vector3 scale)
+        {
+            Matrix4x4 result = Matrix4x4.Identity;
+            result[0, 0] = scale.x;
+            result[1, 1] = scale.y;
+            result[2, 2] = scale.z;
+            return matrix * result;
         }
         public static Matrix4x4 Translate(Vector3 translation)
         {
@@ -85,8 +99,17 @@ namespace UrsaEngine.Math
             result[2, 3] = translation.z;
             return result;
         }
+        public static Matrix4x4 Translate(Matrix4x4 matrix, Vector3 translation)
+        {
+            Matrix4x4 result = Matrix4x4.Identity;
+            result[0, 3] += translation.x;
+            result[1, 3] += translation.y;
+            result[2, 3] += translation.z;
+            return matrix * result;
+        }
         public static Matrix4x4 Rotate(Quaternion rotation)
         {
+            throw new NotImplementedException();
             //float r0c0 = 2(rotation.w * rotation.w + rotation.x * rotation.x) - 1;
             float r0c0 = rotation.w * rotation.w + rotation.x * rotation.x - rotation.y * rotation.y - rotation.z * rotation.z;
             float r1c0 = 2 * (rotation.x * rotation.y + rotation.w * rotation.z);
@@ -120,37 +143,82 @@ namespace UrsaEngine.Math
             float sA = MathF.Sin(angle);
 
             float m00 = cA + (x * x) * (1 - cA);
-            float m10 = y * x *(1 - cA) + z * sA; 
-            float m20 = z * x *(1 - cA) - y * sA;
+            float m10 = y * x * (1 - cA) + z * sA;
+            float m20 = z * x * (1 - cA) - y * sA;
 
             float m01 = x * y * (1 - cA) - z * sA;
             float m11 = cA + (y * y) * (1 - cA);
-            float m21 = z * y *(1 - cA) + x * sA;
+            float m21 = z * y * (1 - cA) + x * sA;
 
-            float m02 = x * z *(1 - cA) + y * sA;
+            float m02 = x * z * (1 - cA) + y * sA;
             float m12 = y * z * (1 - cA) - x * sA;
             float m22 = cA + (z * z) * (1 - cA);
             Matrix4x4 mat = Matrix4x4.Identity;
-            mat[0,0] = m00;
-            mat[1,0] = m10;
-            mat[2,0] = m20;
+            mat[0, 0] = m00;
+            mat[1, 0] = m10;
+            mat[2, 0] = m20;
 
-            mat[0,1] = m01;
-            mat[1,1] = m11;
-            mat[2,1] = m21;
+            mat[0, 1] = m01;
+            mat[1, 1] = m11;
+            mat[2, 1] = m21;
 
-            mat[0,2] = m02;
-            mat[1,2] = m12;
-            mat[2,2] = m22;
+            mat[0, 2] = m02;
+            mat[1, 2] = m12;
+            mat[2, 2] = m22;
             return mat;
+        }
+        public static Matrix4x4 Rotate(Matrix4x4 matrix, Vector3 axis, float angle)
+        {
+            angle = UMathF.Radians(angle);
+            float x = axis.x;
+            float y = axis.y;
+            float z = axis.z;
+            float cA = MathF.Cos(angle);
+            float sA = MathF.Sin(angle);
+
+            float m00 = cA + (x * x) * (1 - cA);
+            float m10 = y * x * (1 - cA) + z * sA;
+            float m20 = z * x * (1 - cA) - y * sA;
+
+            float m01 = x * y * (1 - cA) - z * sA;
+            float m11 = cA + (y * y) * (1 - cA);
+            float m21 = z * y * (1 - cA) + x * sA;
+
+            float m02 = x * z * (1 - cA) + y * sA;
+            float m12 = y * z * (1 - cA) - x * sA;
+            float m22 = cA + (z * z) * (1 - cA);
+            
+            Matrix4x4 result = Matrix4x4.Identity;
+            result[0, 0] = m00;
+            result[1, 0] = m10;
+            result[2, 0] = m20;
+
+            result[0, 1] = m01;
+            result[1, 1] = m11;
+            result[2, 1] = m21;
+
+            result[0, 2] = m02;
+            result[1, 2] = m12;
+            result[2, 2] = m22;
+            return matrix * result;
         }
         public static Matrix4x4 TRS(Vector3 scale, Quaternion rotation, Vector3 translation)
         {
+            throw new NotImplementedException();
+
             Matrix4x4 result = Matrix4x4.Identity;
             result *= Scale(scale);
             result *= Rotate(rotation);
             result *= Translate(translation);
             return result;
+        }
+        public static Matrix4x4 TRS(Matrix4x4 matrix, Vector3 scale, Quaternion rotation, Vector3 translation)
+        {
+            throw new NotImplementedException();
+            matrix *= Scale(scale);
+            matrix *= Rotate(rotation);
+            matrix *= Translate(translation);
+            return matrix;
         }
         public static Matrix4x4 TRS(Vector3 scale, Vector3 rotation, float angle, Vector3 translation)
         {
@@ -158,8 +226,18 @@ namespace UrsaEngine.Math
             result *= Scale(scale);
             result *= Rotate(rotation, angle);
             result *= Translate(translation);
+
             return result;
         }
+        public static Matrix4x4 TRS(Matrix4x4 matrix, Vector3 scale, Vector3 axis, float angle, Vector3 translation)
+        {
+            matrix = Scale(matrix, scale);
+            matrix = Translate(matrix, translation);
+            matrix = Rotate(matrix, axis, angle);
+            return matrix;
+        }
+        #endregion
+        #region Math operations
         public static Matrix4x4 operator *(Matrix4x4 left, Matrix4x4 right)
         {
             float[,] res = new float[4, 4];
@@ -214,6 +292,7 @@ namespace UrsaEngine.Math
             }
             return left;
         }
+        #endregion
         public float[,] To2DArray() => matArr;
         public float[] ToArray()
         {

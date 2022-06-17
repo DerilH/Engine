@@ -2,7 +2,7 @@ using GLFW;
 using GLFW.Game;
 using UrsaEngine;
 using GlmNet;
-using UrsaEngine.Math;
+using System.Numerics;
 using static OpenGL.GL;
 namespace UrsaEngine.Rendering.OpenGL
 {
@@ -55,11 +55,8 @@ namespace UrsaEngine.Rendering.OpenGL
         public unsafe override void DrawObject(Object obj)
         {
             (obj as IGLRenderable).texture.Use(0);
-            Matrix4x4 trs = Matrix4x4.TRS(Vector3.One, new Vector3(0,0,1),0, Vector3.Zero);
-            Matrix4x4 t = Matrix4x4.Translate( new Vector3(0f, 0, 0));
-            Matrix4x4 r = Matrix4x4.Rotate( new Vector3(0,0,1), 180);
-
-            currentShaderProgram.Set<Matrix4x4>("modelMatrix", trs);
+            obj.transform.rotation = Quaternion.CreateFromAxisAngle(new Vector3(0,0,1), (float)Glfw.Time);
+            currentShaderProgram.Set<Matrix4x4>("modelMatrix", obj.transform.modelMatrix);
             glBindVertexArray((obj as IGLRenderable).VAO);
             glDrawArrays(GL_TRIANGLES, 0, (obj as IGLRenderable).verticesCount);
         }

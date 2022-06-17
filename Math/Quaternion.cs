@@ -77,7 +77,7 @@ namespace UrsaEngine.Math
             this.x = look.x;
             this.y = look.y;
             this.z = look.z;
-            this.w = System.MathF.Sqrt(look.sqrMmagnitude + up.sqrMmagnitude  ) + Vector3.Dot(look, up);
+            this.w = System.MathF.Sqrt(look.sqrMmagnitude + up.sqrMmagnitude) + Vector3.Dot(look, up);
         }
         public static Quaternion FromEulers(float x, float y, float z)
         {
@@ -98,5 +98,6 @@ namespace UrsaEngine.Math
             q.z = cr * cp * sy - sr * sp * cy;
             return q;
         }
+        public Vector3 ToVec3() => new Vector3(x, y, z);
     }
 }
